@@ -6,8 +6,9 @@ pipeline {
      // ORGANIZATION_NAME
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
      
-     ORGANIZATION_NAME = 'bagannagarisandeep' 
+     ORGANIZATION_NAME = "bagannagarisandeep" 
      SERVICE_NAME = "fleetman-api-gateway"
+     YOUR_DOCKERHUB_USERNAME =  "sandeepreddybagannagari"
      REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
    }
 
