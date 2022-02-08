@@ -37,7 +37,8 @@ pipeline {
       stage('Deploy to Cluster') {
           steps {
 		  script{
-		      withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awscredentials', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
+		      withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awscredentials', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
+		      } 
                       withCredentials([kubeconfigFile(credentialsId: 'kubeconfig-jenkins', variable: 'KUBECONFIG')]) {  
 			dir('kubernetes/') {
                          sh 'envsubst < ${WORKSPACE}/deploy.yaml | /usr/local/bin/kubectl apply -f -'
