@@ -36,11 +36,13 @@ pipeline {
 
       stage('Deploy to Cluster') {
           steps {
-             withCredentials([kubeconfigFile(credentialsId: 'kubeconfig-jenkins', variable: 'KUBECONFIG')]) {
-	       dir ("kubernetes/"){
-                     sh 'envsubst < ${WORKSPACE}/deploy.yaml | /usr/local/bin/kubectl apply -f -'
-	     }
-	 }
+		  script{
+		   withCredentials([kubeconfigFile(credentialsId: 'kubeconfig-jenkins', variable: 'KUBECONFIG')]) {  
+			dir('kubernetes/') {
+                         sh 'envsubst < ${WORKSPACE}/deploy.yaml | /usr/local/bin/kubectl apply -f -'
+	    }
+         }
       }
    }
 }
+	
