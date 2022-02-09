@@ -30,7 +30,7 @@ pipeline {
 
       stage('Build and Push Image') {
 	steps {	 
-		withCredentials([string(credentialsId: 'AWS-Credentials', variable: 'awscreds')]){
+		withCredentials([string(credentialsId: 'AWS-Credentials', variable: 'string')]){
 		sh 'use $awscreds'
 	        sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 258917317247.dkr.ecr.ap-south-1.amazonaws.com'
 		}	
