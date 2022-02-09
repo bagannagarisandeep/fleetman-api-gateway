@@ -33,16 +33,15 @@ pipeline {
            sh 'docker image build -t ${REPOSITORY_TAG} .'
          }
       }
-
-     stage('Deploy to Cluster') {
-   
-		  script{
-                      withCredentials([kubeconfigFile(credentialsId: '79a1868e-b559-419b-8e4c-cb53f85e9413')]) 
-		  }
-	          steps {
-                         sh 'envsubst < ${WORKSPACE}/deploy.yaml | /usr/local/bin/kubectl apply -f -'
+	   
+stage('Deploy to Cluster') {
+     steps {
+	     script{
+                  withCredentials([kubeconfigFile(credentialsId: '79a1868e-b559-419b-8e4c-cb53f85e9413', variable: 'string')]) {  
+		    sh 'envsubst < ${WORKSPACE}/deploy.yaml | /usr/local/bin/kubectl apply -f -'
 		      }
 	            }
 		  }
 	        }
-	       
+	      }
+	    }
