@@ -7,9 +7,9 @@ pipeline {
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
      
      ORGANIZATION_NAME = "bagannagarisandeep" 
-     SERVICE_NAME = "container"
-     ECR_URI = "258917317247.dkr.ecr.ap-south-1.amazonaws.com"
-     REPOSITORY_TAG ="${ECR_URI}/${SERVICE_NAME}:${BUILD_ID}"
+     SERVICE_NAME = "fleetman-api-gateway"
+     ECR_URI = "258917317247.dkr.ecr.ap-south-1.amazonaws.com/container"
+     REPOSITORY_TAG ="${ECR_URI}:${BUILD_ID}"
    }
 
    stages {
