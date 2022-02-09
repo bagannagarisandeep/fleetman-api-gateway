@@ -37,7 +37,7 @@ pipeline {
       stage('Deploy to Cluster') {
           steps {
 		  script{
-                      withCredentials([kubeconfigFile(credentialsId: 'Jenkins-kubernetes-token', variable: 'KUBECONFIG')]) {  
+                      withCredentials([kubeconfigFile(credentialsId: '79a1868e-b559-419b-8e4c-cb53f85e9413', variable: 'KUBECONFIG')]) {  
 			dir('kubernetes/') {
                          sh 'envsubst < ${WORKSPACE}/deploy.yaml | /usr/local/bin/kubectl apply -f -'
 	        }
