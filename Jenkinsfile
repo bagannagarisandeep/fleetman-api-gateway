@@ -8,8 +8,8 @@ pipeline {
      
      ORGANIZATION_NAME = "bagannagarisandeep" 
      SERVICE_NAME = "fleetman-api-gateway"
-     YOUR_DOCKERHUB_USERNAME =  "sandeepreddybagannagari"
-     REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
+     ECR_URI = "258917317247.dkr.ecr.ap-south-1.amazonaws.com/container"
+     REPOSITORY_TAG ="${ECR_URI}/${SERVICE_NAME}:${BUILD_ID}"
    }
 
    stages {
@@ -30,7 +30,8 @@ pipeline {
 
       stage('Build and Push Image') {
          steps {
-           sh 'docker image build -t ${REPOSITORY_TAG} .'
+           sh 'sudo docker image build -t ${REPOSITORY_TAG} .'
+           sh 'sudo docker push ${REPOSITORY_TAG}'
          }
       }
 	   
