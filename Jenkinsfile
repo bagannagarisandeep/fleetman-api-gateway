@@ -40,6 +40,7 @@ pipeline {
                       withCredentials([kubeconfigFile(credentialsId: '79a1868e-b559-419b-8e4c-cb53f85e9413', variable: 'KUBECONFIG')]) {  
 			dir('~/kube/') {
                          sh 'envsubst < ${WORKSPACE}/deploy.yaml | /usr/local/bin/kubectl apply -f -'
+		  }
 	        }
 	      }
 	    }
