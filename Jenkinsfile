@@ -30,7 +30,12 @@ pipeline {
 
       stage('Build and Push Image') {
 	steps {	 
-           sh 'sudo docker image build -t ${REPOSITORY_TAG} .'
+		withCredentials([string(credentialsId: 'AWS-Credentials', variable: 'awscreds')]){
+		sh 'use $awscreds'
+	        sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 258917317247.dkr.ecr.ap-south-1.amazonaws.com'
+		}	
+           
+	   sh 'sudo docker image build -t ${REPOSITORY_TAG} .'
            sh 'sudo docker push ${REPOSITORY_TAG}'
          }
       }
