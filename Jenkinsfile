@@ -30,7 +30,7 @@ pipeline {
 
       stage('Build and Push Image') {
 	steps {		
-	   sh 'aws configure set default.region us-south-1; aws configure set aws_access_key_id 'AKIATYSFMXJ72RDDXKEM' ; aws configure set aws_secret_access_key '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';'
+	   sh "aws configure set default.region us-south-1; aws configure set aws_access_key_id 'AKIATYSFMXJ72RDDXKEM' ; aws configure set aws_secret_access_key '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'"
 	   sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 258917317247.dkr.ecr.ap-south-1.amazonaws.com'
            sh 'sudo docker image build -t ${REPOSITORY_TAG} .'
            sh 'sudo docker push ${REPOSITORY_TAG}'
