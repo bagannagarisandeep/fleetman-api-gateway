@@ -8,7 +8,7 @@ pipeline {
      
      ORGANIZATION_NAME = "bagannagarisandeep" 
      SERVICE_NAME = "fleetman-api-gateway"
-     ECR_URI = "258917317247.dkr.ecr.ap-south-1.amazonaws.com/container"
+     ECR_URI = "632306886533.dkr.ecr.ap-south-1.amazonaws.com/fleetman-api-gateway"
      REPOSITORY_TAG ="${ECR_URI}:${BUILD_ID}"
    }
 
@@ -30,8 +30,8 @@ pipeline {
 
       stage('Build and Push Image') {
 	steps {		
-	   sh "aws configure set default.region us-south-1; aws configure set aws_access_key_id 'AKIATYSFMXJ72RDDXKEM' ; aws configure set aws_secret_access_key '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'"
-	   sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 258917317247.dkr.ecr.ap-south-1.amazonaws.com'
+	   sh "aws configure set default.region us-south-1; aws configure set aws_access_key_id 'AKIAZGODNM6CSQK7B7VE' ; aws configure set aws_secret_access_key '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'"
+	   sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 632306886533.dkr.ecr.ap-south-1.amazonaws.com'
            sh 'docker image build -t ${REPOSITORY_TAG} .'
            sh 'docker push ${REPOSITORY_TAG}'
          }
